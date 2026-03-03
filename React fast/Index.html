@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Reaction Test by Code_RIR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="reaction-card">
+        <div class="cyber-header">
+            <h1>⚡Code_RIR⚡</h1>
+            <div class="sub-tag">// Test Your Reflexes //</div>
+        </div>
+
+        <!-- main clickable FLASH area -->
+        <div id="flashZone" class="flash-area">
+            <div class="flash-label">[ TARGET ]</div>
+            <div id="statusMessage" class="reaction-status">waiting</div>
+        </div>
+
+        <!-- stats: time + rank + tries -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-label">⏱️ last ms</div>
+                <div class="stat-value" id="lastTime">—</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">🔥 best ms</div>
+                <div class="stat-value" id="bestTime">—</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">📊 avg ms</div>
+                <div class="stat-value" id="avgTime">—</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">🏆 rank</div>
+                <div class="stat-value rank-badge" id="rankDisplay">?</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">🎯 tries</div>
+                <div class="stat-value" id="attemptCount">0</div>
+            </div>
+        </div>
+
+        <!-- control row -->
+        <div class="action-row">
+            <button class="cyber-btn" id="newTestBtn">⟲ NEW TEST</button>
+            <button class="cyber-btn" id="resetBtn">⏼ RESET</button>
+        </div>
+
+        <!-- "Try to beat 200ms 👀" -->
+        <div class="hook">
+            <span>“Try to beat 200ms 👀”</span>
+            <div class="kbd-hint">Mouse Click or USE [SPACEBAR] to play</div>
+        </div>
+
+
+    </div>
+
+    <!-- information card on the right -->
+    <div class="info-card">
+        <div class="info-header">
+            <h2><span class="glitch-icon">❖</span> INTEL DATA</h2>
+            <div class="info-tag">[ BIO-METRICS ]</div>
+        </div>
+
+        <div class="info-content">
+            <h3>WHAT IS A PERFECT AVERAGE?</h3>
+            <p>According to research, the <b>average visual reaction time</b> for a healthy human is between <b>200ms
+                    and 250ms</b>.</p>
+            <ul class="stats-list">
+                <li><span class="tier tier-god">Elite:</span>
+                    &lt; 170ms</li>
+                <li><span class="tier tier-pro">Pro:</span> 170ms - 200ms</li>
+                <li><span class="tier tier-avg">Average:</span> 200ms - 250ms</li>
+            </ul>
+
+            <h3>WHY TRAIN YOUR REFLEXES?</h3>
+            <p>Faster reaction times aren't just for gaming. Training your reflexes constantly gives you a competitive
+                edge and improves:</p>
+            <ul class="benefits-list">
+                <li>⚡ <b>Split-Second Decisions:</b> Essential for top-tier competitive play and sports.</li>
+                <li>🧠 <b>Brain Health:</b> Measures processing speed and keeps your cognitive functions sharp.</li>
+                <li>🎯 <b>Coordination:</b> Drastically improves your hand-eye coordination over time.</li>
+            </ul>
+            <div class="foot-glitch">
+                <span>✶✶ POWERED BY Code_RIR ✶✶</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

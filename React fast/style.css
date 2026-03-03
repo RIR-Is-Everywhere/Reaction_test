@@ -1,0 +1,602 @@
+/* ----- CSS reset & base ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Share Tech Mono', 'Courier New', monospace;
+}
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 30%, #1a0508 0%, #0b0103 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* cyber grid + scanlines (background effects) */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(0deg,
+            rgba(255, 40, 60, 0.03) 0px,
+            transparent 2px,
+            transparent 8px),
+        linear-gradient(135deg,
+            rgba(180, 0, 30, 0.2) 0%,
+            transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg,
+            transparent 0px,
+            rgba(255, 20, 40, 0.1) 2px,
+            transparent 4px);
+    pointer-events: none;
+    z-index: 1;
+    animation: glitchScan 8s infinite linear;
+}
+
+@keyframes glitchScan {
+    0% {
+        opacity: 0.2;
+        transform: translateX(0);
+    }
+
+    20% {
+        opacity: 0.5;
+        transform: translateX(-1%);
+    }
+
+    40% {
+        opacity: 0.2;
+        transform: translateX(2%);
+    }
+
+    100% {
+        opacity: 0.2;
+        transform: translateX(0);
+    }
+}
+
+/* Screen Shake effect */
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* main card — neon redish cyberpunk */
+.reaction-card {
+    width: 100%;
+    max-width: 760px;
+    background: rgba(10, 2, 4, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid #ff3a4d;
+    box-shadow:
+        0 0 30px #ff1744,
+        0 0 10px #ff3d00,
+        inset 0 0 20px rgba(255, 30, 30, 0.3);
+    border-radius: 2.5rem 1rem 2.5rem 1rem;
+    padding: 2rem 1.5rem 2.5rem;
+    position: relative;
+    z-index: 10;
+    transition: box-shadow 0.2s ease;
+    animation: borderFlicker 3s infinite alternate;
+}
+
+@keyframes borderFlicker {
+    0% {
+        border-color: #ff3a4d;
+        box-shadow: 0 0 25px #ff1744, inset 0 0 15px #ff3d00;
+    }
+
+    25% {
+        border-color: #ff6d6d;
+        box-shadow: 0 0 40px #ff5252, inset 0 0 30px #ff8a80;
+    }
+
+    50% {
+        border-color: #d50000;
+        box-shadow: 0 0 35px #b71c1c, inset 0 0 20px #ff1744;
+    }
+
+    75% {
+        border-color: #ff3d00;
+        box-shadow: 0 0 50px #ff3d00, inset 0 0 25px #ff6e6e;
+    }
+
+    100% {
+        border-color: #ff3a4d;
+        box-shadow: 0 0 25px #ff1744, inset 0 0 15px #ff3d00;
+    }
+}
+
+/* header with glitch */
+.cyber-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.cyber-header h1 {
+    font-size: clamp(2.4rem, 12vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #ffb3b3;
+    text-shadow:
+        0 0 5px #ff4d4d,
+        0 0 15px #ff1a1a,
+        0 0 30px #b30000,
+        4px 4px 0 #620000;
+    animation: glitchTitle 2.5s infinite steps(1);
+}
+
+@keyframes glitchTitle {
+
+    0%,
+    100% {
+        transform: skew(0deg, 0deg);
+        opacity: 1;
+        text-shadow: 4px 4px 0 #620000, -2px -2px 0 #ff8080;
+    }
+
+    5% {
+        transform: skew(3deg, 1deg);
+        text-shadow: -4px 2px 0 #ff2222, 3px -3px 0 #a10000;
+    }
+
+    10% {
+        transform: skew(-2deg, -1deg);
+        text-shadow: 5px -1px 0 #a10000, -3px 3px 0 #ff4d4d;
+    }
+
+    15% {
+        transform: skew(0deg, 0deg);
+    }
+}
+
+.sub-tag {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: #ffa0a0;
+    background: rgba(180, 0, 0, 0.25);
+    display: inline-block;
+    padding: 0.4rem 2rem;
+    border-radius: 40px;
+    border-left: 6px solid #ff4d4d;
+    border-right: 6px solid #ff4d4d;
+    text-shadow: 0 0 8px red;
+    margin-top: 0.5rem;
+    font-weight: 300;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px #f005;
+}
+
+/* flash zone */
+.flash-area {
+    background: #130207;
+    border: 3px solid #ff3a4d;
+    border-radius: 60px 20px 60px 20px;
+    padding: 2.5rem 1rem;
+    margin: 1.8rem 0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.05s linear;
+    box-shadow: inset 0 0 40px #330000, 0 0 30px #f00b;
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear forwards;
+    background: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    z-index: 5;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(40);
+        opacity: 0;
+    }
+}
+
+.flash-area .flash-label {
+    font-size: 1.3rem;
+    color: #ffc1c1;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 300;
+    text-shadow: 0 0 5px crimson;
+}
+
+.flash-area .reaction-status {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #ff5e5e;
+    text-shadow: 0 0 25px red, 0 0 45px #ff2020;
+    min-height: 5rem;
+    word-break: break-word;
+}
+
+/* flash state (active) */
+.flash-area.flash-active {
+    background: #ff2a2a;
+    border-color: #fff3f3;
+    box-shadow: 0 0 80px #ff6060, inset 0 0 60px #ffd5d5;
+}
+
+.flash-area.flash-active .reaction-status {
+    color: #fff4f4;
+    text-shadow: 0 0 40px black, 0 0 70px #ffffff;
+}
+
+/* stats grid */
+.stats-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem 0.5rem;
+    margin: 2rem 0 1.8rem;
+}
+
+.stat-item {
+    flex: 1 1 90px;
+    background: rgba(34, 0, 6, 0.7);
+    border: 1px solid #ff5e5e;
+    border-radius: 20px 5px 20px 5px;
+    padding: 0.8rem 0.2rem;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px #ff3d3d33;
+}
+
+.stat-label {
+    color: #ff9e9e;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ff4a4a;
+    text-shadow: 0 0 15px red;
+    line-height: 1.2;
+}
+
+.rank-badge {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(145deg, #ff2020, #7a0303);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px #ff7373;
+}
+
+/* action buttons */
+.action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin: 2rem 0 0.8rem;
+}
+
+.cyber-btn {
+    background: rgba(10, 2, 5, 0.9);
+    border: 2px solid #ff3a4d;
+    color: #ffbcbc;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 3px;
+    padding: 0.8rem 1.8rem;
+    border-radius: 40px 10px 40px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px #ff2a2a, inset 0 0 5px #ff8080;
+    transition: 0.1s ease-out;
+    flex: 1 0 auto;
+    min-width: 140px;
+}
+
+.cyber-btn:hover {
+    background: #ff1f1f;
+    color: black;
+    border-color: #fff;
+    box-shadow: 0 0 40px red, inset 0 0 20px white;
+    transform: scale(1.02);
+}
+
+.cyber-btn:active {
+    transform: scale(0.98);
+}
+
+/* try beat 200ms 👀 */
+.hook {
+    text-align: center;
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #ff6868;
+    text-shadow: 0 0 10px crimson;
+    animation: pulseText 1.5s infinite alternate;
+}
+
+@keyframes pulseText {
+    from {
+        opacity: 0.7;
+        text-shadow: 0 0 5px #ff5a5a;
+    }
+
+    to {
+        opacity: 1;
+        text-shadow: 0 0 20px #ff8a8a, 0 0 30px #ff0000;
+    }
+}
+
+.kbd-hint {
+    font-size: 0.95rem;
+    color: #ff8080;
+    margin-top: 0.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.4);
+}
+
+.hook span {
+    background: #330000;
+    padding: 0.2rem 1rem;
+    border-radius: 50px;
+    border-left: 4px solid red;
+    border-right: 4px solid red;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+}
+
+/* footer / tiny glitch */
+.foot-glitch {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #a53a3a;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+}
+
+/* Info Card - Right Side panel */
+.info-card {
+    flex: 1 1 350px;
+    max-width: 480px;
+    background: rgba(10, 2, 4, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid #ff3a4d;
+    box-shadow: 0 0 20px rgba(255, 23, 68, 0.4), inset 0 0 10px rgba(255, 30, 30, 0.2);
+    border-radius: 1rem 2.5rem 1rem 2.5rem;
+    padding: 2rem;
+    color: #ffcccc;
+    z-index: 10;
+}
+
+.info-header {
+    border-bottom: 1px solid rgba(255, 58, 77, 0.5);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-header h2 {
+    font-size: 1.8rem;
+    color: #ffb3b3;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #ff1a1a;
+}
+
+.glitch-icon {
+    color: #ff3a4d;
+}
+
+.info-tag {
+    font-size: 0.85rem;
+    color: #ffa0a0;
+    margin-top: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.info-content h3 {
+    font-size: 1.1rem;
+    color: #ff5e5e;
+    margin: 1.5rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ffb3b3;
+    margin-bottom: 1rem;
+}
+
+.info-content b {
+    color: #ff4d4d;
+    text-shadow: 0 0 5px #ff2020;
+}
+
+.stats-list,
+.benefits-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid #ff3a4d;
+    padding-left: 1rem;
+}
+
+.stats-list li,
+.benefits-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.tier-god {
+    color: #ffd700;
+    text-shadow: 0 0 5px #ffaa00;
+    font-weight: bold;
+}
+
+.tier-pro {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00aaff;
+    font-weight: bold;
+}
+
+.tier-avg {
+    color: #a3ffaa;
+    text-shadow: 0 0 5px #55ff55;
+    font-weight: bold;
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+    .reaction-card {
+        padding: 1.5rem 0.8rem;
+        border-radius: 1.5rem 0.5rem;
+    }
+
+    .cyber-header h1 {
+        font-size: 2.3rem;
+        letter-spacing: 3px;
+    }
+
+    .sub-tag {
+        font-size: 0.9rem;
+        padding: 0.3rem 1rem;
+    }
+
+    .flash-area {
+        margin: 1rem 0;
+        padding: 2rem 0.5rem;
+        border-radius: 30px 10px;
+        touch-action: manipulation;
+    }
+
+    .flash-area .reaction-status {
+        font-size: 2.2rem;
+        min-height: 3rem;
+    }
+
+    .stats-grid {
+        gap: 0.5rem;
+        margin: 1.5rem 0 1rem;
+    }
+
+    .stat-item {
+        flex: 1 1 30%;
+        padding: 0.5rem 0.1rem;
+        border-radius: 10px 3px;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .stat-value {
+        font-size: 1.6rem;
+    }
+
+    .rank-badge {
+        font-size: 1.5rem;
+    }
+
+    .action-row {
+        margin: 1rem 0;
+        gap: 0.5rem;
+    }
+
+    .cyber-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-width: 120px;
+    }
+
+    .hook {
+        font-size: 1.2rem;
+    }
+
+    .kbd-hint {
+        display: none;
+    }
+}
